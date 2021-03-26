@@ -4,7 +4,12 @@
 
 <form method="post" action="/accounts/create">
 	{% csrf_token %}
-	{{form.as_p}}
-	<button type="submit", name="save">Create </button>
+	<h1>User Information</h1>
+	{{member_form.as_p}}
+	<h1>General Degree Information</h1>
+	{{general_degree_form.as_p}}
+	<h1>MBA Information</h1>
+	{{mba_form.as_p}}
+	<button type="submit", name="save"><h3>Create</h3></button>
 </form>
 {% endblock %}

@@ -1,4 +1,4 @@
-defaultqlite3
+db.sqlite3
 *.swp
 *.pyc
 __pycache__

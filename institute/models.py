@@ -6,7 +6,12 @@ class Member(models.Model):
     full_name = models.CharField(max_length=100, null=True)
     family_name = models.CharField(max_length=100, null=True)
     first_name = models.CharField(max_length=100, null=True)
-    sex = models.BooleanField(null=True)
+    GENDER_CHOICES = (
+            ('M', 'Male'),
+            ('F', 'Female'),
+            ('ND', 'Not Defined')
+            )
+    gender = models.CharField(max_length=2 , choices=GENDER_CHOICES, default='ND')
     date_of_birth = models.DateTimeField(null=True)
     nationality = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=100, null=True)
@@ -21,6 +26,9 @@ class Member(models.Model):
     course = models.BooleanField(null=True)
     member = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.member.username
+
 class GeneralDegreeInfo(models.Model):
     school = models.CharField(max_length=100, null=True)
     graduated = models.BooleanField(null=True)
@@ -30,8 +38,11 @@ class GeneralDegreeInfo(models.Model):
     completion_status = models.BooleanField(null=True)
     year_of_entered = models.IntegerField(null=True)
     year_of_graduation = models.IntegerField(null=True)
-    user_id = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    member = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return self.member.username
+
 class MbaInfo(models.Model):
     school = models.CharField(max_length=100, null=True)
     graduated = models.BooleanField(null=True)
@@ -41,4 +52,7 @@ class MbaInfo(models.Model):
     completion_status = models.BooleanField(null=True)
     year_of_entered = models.IntegerField(null=True)
     year_of_graduation = models.IntegerField(null=True)
-    user_id = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    member = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.member.username

@@ -13,7 +13,7 @@ class CreateMember(forms.ModelForm):
                 "full_name", 
                 "family_name", 
                 "first_name", 
-                "sex", 
+                "gender", 
                 "date_of_birth", 
                 "nationality", 
                 "address", 
@@ -26,9 +26,35 @@ class CreateMember(forms.ModelForm):
                 "your_position",
                 "name_of_the_institute_you_took_the_mba_emba",
                 "course",
-                #"year_of_entered",
-                #"year_of_graduation"
                 ]
+
+class GeneralDegreeForm(forms.ModelForm):
+    class Meta:
+        model = models.GeneralDegreeInfo
+        fields = (
+                "school", 
+                "graduated", 
+                "faculty", 
+                "department",
+                "degree",
+                "completion_status",
+                "year_of_entered",
+                "year_of_graduation"
+                )
+
+class MbaForm(forms.ModelForm):
+    class Meta:
+        model = models.MbaInfo
+        fields = (
+                "school", 
+                "graduated", 
+                "faculty", 
+                "department",
+                "degree",
+                "completion_status",
+                "year_of_entered",
+                "year_of_graduation"
+                )
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
